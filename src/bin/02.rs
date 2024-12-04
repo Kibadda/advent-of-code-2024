@@ -6,9 +6,9 @@ fn is_safe(report: Vec<i32>) -> bool {
     let is_increasing = report[0] < report[1];
 
     for n in 1..count {
-        let diff = (report[n-1] - report[n]).abs();
+        let diff = (report[n - 1] - report[n]).abs();
 
-        if !(1..=3).contains(&diff) || ((report[n-1] < report[n]) != is_increasing) {
+        if !(1..=3).contains(&diff) || ((report[n - 1] < report[n]) != is_increasing) {
             return false;
         }
     }
@@ -20,7 +20,10 @@ pub fn part_one(input: &str) -> Option<u32> {
     let mut safe = 0;
 
     input.lines().for_each(|line| {
-        let split: Vec<i32> = line.split_whitespace().map(|c| c.parse().unwrap()).collect();
+        let split: Vec<i32> = line
+            .split_whitespace()
+            .map(|c| c.parse().unwrap())
+            .collect();
 
         if is_safe(split) {
             safe += 1;
@@ -34,13 +37,21 @@ pub fn part_two(input: &str) -> Option<u32> {
     let mut safe = 0;
 
     input.lines().for_each(|line| {
-        let split: Vec<i32> = line.split_whitespace().map(|c| c.parse().unwrap()).collect();
+        let split: Vec<i32> = line
+            .split_whitespace()
+            .map(|c| c.parse().unwrap())
+            .collect();
 
         if is_safe(split.clone()) {
             safe += 1;
         } else {
             for n in 0..split.len() {
-                let clone = split.iter().enumerate ().filter(|&(i, _)| i != n).map(|(_, e)| *e).collect();
+                let clone = split
+                    .iter()
+                    .enumerate()
+                    .filter(|&(i, _)| i != n)
+                    .map(|(_, e)| *e)
+                    .collect();
                 if is_safe(clone) {
                     safe += 1;
                     break;
