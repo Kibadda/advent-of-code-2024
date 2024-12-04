@@ -15,6 +15,7 @@
         aoc-cli
         rustc
         rust-analyzer
+        rustfmt
         rustPackages.clippy
       ];
         RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
