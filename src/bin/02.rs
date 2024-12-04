@@ -8,7 +8,7 @@ fn is_safe(report: Vec<i32>) -> bool {
     for n in 1..count {
         let diff = (report[n-1] - report[n]).abs();
 
-        if diff < 1 || diff > 3 || ((report[n-1] < report[n]) != is_increasing) {
+        if !(1..=3).contains(&diff) || ((report[n-1] < report[n]) != is_increasing) {
             return false;
         }
     }

@@ -4,7 +4,7 @@ pub fn part_one(input: &str) -> Option<u32> {
     let mut count = 0;
     let grid = input.lines().map(|s| s.chars().collect()).collect::<Vec<Vec<char>>>();
     let directions: Vec<(i32, i32)> = vec![(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)];
-    let word = vec!['X', 'M', 'A', 'S'];
+    let word = ['X', 'M', 'A', 'S'];
 
     grid.iter().enumerate().for_each(|(i, row)| {
         row.iter().enumerate().for_each(|(j, c)| {
@@ -31,16 +31,14 @@ pub fn part_two(input: &str) -> Option<u32> {
 
     grid.iter().enumerate().for_each(|(i, row)| {
         row.iter().enumerate().for_each(|(j, c)| {
-            if c == &'A' {
-                if i > 0 && i < grid.len() - 1 && j > 0 && j < row.len() - 1 {
-                    let tl = (i - 1, j - 1);
-                    let br = (i + 1, j + 1);
-                    let tr = (i - 1, j + 1);
-                    let bl = (i + 1, j - 1);
+            if c == &'A' && i > 0 && i < grid.len() - 1 && j > 0 && j < row.len() - 1 {
+                let tl = (i - 1, j - 1);
+                let br = (i + 1, j + 1);
+                let tr = (i - 1, j + 1);
+                let bl = (i + 1, j - 1);
 
-                    if ((grid[tl.0][tl.1] == 'M' && grid[br.0][br.1] == 'S') || (grid[tl.0][tl.1] == 'S' && grid[br.0][br.1] == 'M')) && ((grid[tr.0][tr.1] == 'M' && grid[bl.0][bl.1] == 'S') || (grid[tr.0][tr.1] == 'S' && grid[bl.0][bl.1] == 'M')) {
-                        count += 1;
-                    }
+                if ((grid[tl.0][tl.1] == 'M' && grid[br.0][br.1] == 'S') || (grid[tl.0][tl.1] == 'S' && grid[br.0][br.1] == 'M')) && ((grid[tr.0][tr.1] == 'M' && grid[bl.0][bl.1] == 'S') || (grid[tr.0][tr.1] == 'S' && grid[bl.0][bl.1] == 'M')) {
+                    count += 1;
                 }
             }
         });

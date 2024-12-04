@@ -44,7 +44,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         }
     });
 
-    Some(result as u32)
+    Some(result)
 }
 
 #[cfg(test)]
